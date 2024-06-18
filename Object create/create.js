@@ -69,4 +69,4 @@ function iniMahasiswa(nama, energy){
 // untuk pemanggilan object constructor wajib pakai "new" setelah "="
 // jika tidak, javascript akan menganggap kita menggunakan function declaration
 let anang = new iniMahasiswa('Anang', 100);
-let juldan = new iniMahasiswa('Juldan', 100);
+// let juldan = new iniMahasiswa('Juldan', 100);
