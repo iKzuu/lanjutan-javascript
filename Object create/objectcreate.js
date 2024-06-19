@@ -2,55 +2,55 @@
 
 // Object Literal
 let mahasiswa = {
-    nama: "Rizki",
-    energy: 10,
-    makan: function (porsi){
-        this.energy = this.energy + porsi;
-        console.log(`Halo ${this.nama}, Selamat Makan!`)
-    }
-}
+  nama: "Anang",
+  energy: 10,
+  makan: function (porsi) {
+    this.energy = this.energy + porsi;
+    console.log(`Halo ${this.nama}, Selamat Makan!`);
+  },
+};
 
 // Object Function Declaration
-const methodMahasiswa = {
-    makan: function (porsi){
-        this.energy += porsi;
-        console.log(`Halo ${this.nama}, Selamat Makan!`);
-    },
+// const methodMahasiswa = {
+//     makan: function (porsi){
+//         this.energy += porsi;
+//         console.log(`Halo ${this.nama}, Selamat Makan!`);
+//     },
 
-    main: function (jam) {
-        if (this.energy >= jam) {
-            this.energy -= jam;
-            console.log(`${this.nama}, Kamu telah bermain selama ${jam} jam! energy kamu tersisa ${this.energy}`);
-        } else if (this.energy <= jam) {
-            console.log(`${this.nama}, Kamu tidak memiliki energi yang cukup untuk bermain! perlu makan untuk menambah energy!`);
-        }
-    },
+//     main: function (jam) {
+//         if (this.energy >= jam) {
+//             this.energy -= jam;
+//             console.log(`${this.nama}, Kamu telah bermain selama ${jam} jam! energy kamu tersisa ${this.energy}`);
+//         } else if (this.energy <= jam) {
+//             console.log(`${this.nama}, Kamu tidak memiliki energi yang cukup untuk bermain! perlu makan untuk menambah energy!`);
+//         }
+//     },
 
-    tidur: function (jam) {
-        this.energy += jam * 2;
-        console.log(`Halo ${this.nama}, anda tidur selama ${jam} jam`);
-    }
-}
+//     tidur: function (jam) {
+//         this.energy += jam * 2;
+//         console.log(`Halo ${this.nama}, anda tidur selama ${jam} jam`);
+//     }
+// }
 
-function iniMahasiswa(nama, energy){
-    let mahasiswa = Object.create(methodMahasiswa);
-    // dengan menggunakan Object.create kita bisa ngasih tau parent Objectnya
-    // object mana yang terhubung dengan object iniMahasiswa
-    // jadi tidak perlu mendaftarkan method method yang dibuat
+// function iniMahasiswa(nama, energy){
+//     let mahasiswa = Object.create(methodMahasiswa);
+//     // dengan menggunakan Object.create kita bisa ngasih tau parent Objectnya
+//     // object mana yang terhubung dengan object iniMahasiswa
+//     // jadi tidak perlu mendaftarkan method method yang dibuat
 
-    mahasiswa.nama = nama;
-    mahasiswa.energy = energy;
+//     mahasiswa.nama = nama;
+//     mahasiswa.energy = energy;
 
-     // tidak perlu mendaftarkan method seperti ini lagi jika menggunakan Object.create()
+//      // tidak perlu mendaftarkan method seperti ini lagi jika menggunakan Object.create()
 
-    // mahasiswa.makan = methodMahasiswa.makan;
-    // mahasiswa.main = methodMahasiswa.main;
-    // mahasiswa.tidur = methodMahasiswa.tidur;
+//     // mahasiswa.makan = methodMahasiswa.makan;
+//     // mahasiswa.main = methodMahasiswa.main;
+//     // mahasiswa.tidur = methodMahasiswa.tidur;
 
-    return mahasiswa; // memakai function declaration harus return objectnya
-}
-let rizki = iniMahasiswa('Rizki', 10);
-let juldan = iniMahasiswa('Juldan', 10);
+//     return mahasiswa; // memakai function declaration harus return objectnya
+// }
+// let rizki = iniMahasiswa('Rizki', 10);
+// let juldan = iniMahasiswa('Juldan', 10);
 
 // Object Constructor Function
 
@@ -62,7 +62,7 @@ let juldan = iniMahasiswa('Juldan', 10);
 
 //     // dari yang sebelumnya memakai mahasiswa.properti = argument sekarang mahasiswanya
 //     // di ganti dengan this.properti = argument karena menggunakan constructor tidak menggunakan deklarasi variable
-    
+
 //     this.energy = energy,
 
 //     this.makan = function (porsi){
@@ -86,4 +86,53 @@ let juldan = iniMahasiswa('Juldan', 10);
 // // untuk pemanggilan object constructor wajib pakai "new" setelah "="
 // // jika tidak, javascript akan menganggap kita menggunakan function declaration
 // let anang = new iniMahasiswa('Anang', 100);
-// // let juldan = new iniMahasiswa('Juldan', 100);
+
+// Constructor Function prototype versi inheritance
+// function iniMahasiswa(nama, energy){
+//     this.nama = nama;
+//     this.energy = energy;
+// }
+
+// iniMahasiswa.prototype.makan = function (porsi) {
+//     this.energy += porsi;
+//     return `Halo ${this.nama}, selamat makan! menambah ${porsi} energy`;
+// }
+
+// iniMahasiswa.prototype.main = function (jam) {
+//     this.energy -= jam;
+//     return `${this.nama}, Anda telah bermain selama ${jam} jam`;
+// }
+
+// iniMahasiswa.prototype.tidur = function (jam) {
+//     this.energy += jam * 2;
+//     return `${this.nama}, Anda telah tidur selama ${jam} jam`;
+// }
+
+// let anang = new iniMahasiswa('Anang', 100);
+
+// Constructor Function prototype versi class
+
+class iniMahasiswa {
+  constructor(nama, energy) {
+    this.nama = nama;
+    this.energy = energy;
+  }
+
+  makan(porsi) {
+    this.energy += porsi;
+    return `Halo ${this.nama}, selamat makan! menambah ${porsi} energy`;
+  }
+
+  main(jam) {
+    this.energy -= jam;
+    return `${this.nama}, Anda telah bermain selama ${jam} jam`;
+  }
+
+  tidur(jam) {
+    this.energy += jam * 2;
+    return `${this.nama}, Anda telah tidur selama ${jam} jam`;
+  }
+}
+
+let anang = new iniMahasiswa('Anang', 100);
+let keqing = new iniMahasiswa('Keqing', 100);
